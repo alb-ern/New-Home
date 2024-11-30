@@ -3,14 +3,10 @@ from player import Player
 import os
 
 
-
-
-player=Player(hp=30, loc=(2, 2))
-enemy = Character()
-enemy2 = Character()
-
-
-
+def char_init():
+    player = Player(hp=30, loc=(2, 2), img="knight")
+    enemy = Character()
+    enemy2 = Character()
 
 
 def clear_terminal() -> None:
@@ -34,6 +30,7 @@ def main() -> None:
     print(f"{player.hp=}\n{enemy.hp=}\n{enemy2.hp=}")
     if not enemy.hp:
         player.attack(enemy2)
+
 
 if __name__ == "__main__":
     while True:

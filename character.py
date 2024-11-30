@@ -18,6 +18,7 @@ class Character():
         self.armor = EQ.cape
         self.loc=[loc[0]*64,loc[1]*64]
         Character.Chars.add(self)
+        print("promise")
         self.update()
 
     def take(self, item: "Item") -> None:

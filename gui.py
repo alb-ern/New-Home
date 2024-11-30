@@ -1,4 +1,5 @@
 import pygame as pg
+from main import char_init
 from character import Character
 Chars=Character.Chars
 
@@ -14,7 +15,7 @@ class GUI:
 
 
         for char in Chars:
-             = GUI.load_img("knight")
+            char.img = GUI.load_img(char.img_name)
 
         active = True
         clock = pg.time.Clock()
@@ -28,12 +29,13 @@ class GUI:
                         pass
 
             screen.fill((150, 0, 0))
-            screen.blit(img_knight, (0, 0))
+            for char in Chars:
+                screen.blit(char.img,char.loc)
 
             pg.display.flip()
 
             clock.tick(30)
-
+        print(Chars)
         pg.quit()
 
     @staticmethod
@@ -44,4 +46,5 @@ class GUI:
 
 
 if __name__ == "__main__":
+    char_init()
     GUI()
