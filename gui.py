@@ -8,7 +8,7 @@ class GUI:
         res_info = pg.display.Info()
         screen = pg.display.set_mode(
             (res_info.current_w, res_info.current_h-50))
-        pg.display.set_caption("The Game")
+        pg.display.set_caption("New Home the Game by pythonGodXx")
 
         img_knight = GUI.load_img("knight")
 
