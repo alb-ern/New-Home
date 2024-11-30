@@ -6,7 +6,8 @@ from item import Item
 
 class Character():
     Chars=set()
-    def __init__(self, hp: float = 20, speed: float = 2, loc: tuple[int, int] = (0, 0), img:str="") -> None:
+    def __init__(self, hp: float = 20, speed: float = 2, loc: tuple[int, int] = (0, 0), img:str="error") -> None:
+        self.img_name=img
         self.max_hp = round(hp, 2)
         self.hp = self.max_hp
         self.alive = True

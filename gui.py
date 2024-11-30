@@ -1,4 +1,6 @@
 import pygame as pg
+from character import Character
+Chars=Character.Chars
 
 
 class GUI:
@@ -10,7 +12,9 @@ class GUI:
             (res_info.current_w, res_info.current_h-50))
         pg.display.set_caption("New Home the Game by pythonGodXx")
 
-        img_knight = GUI.load_img("knight")
+
+        for char in Chars:
+             = GUI.load_img("knight")
 
         active = True
         clock = pg.time.Clock()
