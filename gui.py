@@ -1,12 +1,11 @@
 import pygame as pg
-from main import char_init
 from character import Character
 Chars = Character.Chars
 
 
 class GUI:
-    def __init__(self) -> None:
-
+    def __init__(self, background_color=(160, 140, 110)) -> None:
+        self.background_color = background_color
         pg.init()
         res_info = pg.display.Info()
         self.screen = pg.display.set_mode(
@@ -41,12 +40,11 @@ class GUI:
         print("gui init")
 
     def refresh(self) -> None:
-        self.screen.fill((150, 0, 0))
+        self.screen.fill(self.background_color)
         for char in Chars:
             self.screen.blit(char.img, char.loc)
 
         pg.display.flip()
-        print("refresh")
 
     @staticmethod
     def load_img(png: str, scale: tuple[int, int] = (64, 64)) -> pg.Surface:
@@ -56,6 +54,4 @@ class GUI:
 
 
 if __name__ == "__main__":
-    char_init()
     GUI()
-
