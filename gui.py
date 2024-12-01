@@ -1,7 +1,7 @@
 import pygame as pg
 from main import char_init
 from character import Character
-Chars=Character.Chars
+Chars = Character.Chars
 
 
 class GUI:
@@ -9,34 +9,44 @@ class GUI:
 
         pg.init()
         res_info = pg.display.Info()
-        screen = pg.display.set_mode(
+        self.screen = pg.display.set_mode(
             (res_info.current_w, res_info.current_h-50))
         pg.display.set_caption("New Home the Game by pythonGodXx")
 
-
         for char in Chars:
             char.img = GUI.load_img(char.img_name)
+        #
+        # active = True
+        # clock = pg.time.Clock()
+        # ======================================
+        # LOOOP CARIIED TO loop.py
+        # ======================================
+        # # while active:
+        # #     for event in pg.event.get():
+        # #         if event.type == pg.QUIT:
+        # #             active = False
+        # #         elif event.type == pg.KEYDOWN:
+        # #             if event.key == pg.K_RIGHT:
+        # #                 pass
 
-        active = True
-        clock = pg.time.Clock()
+        # #     self.screen.fill((150, 0, 0))
+        # #     for char in Chars:
+        # #         self.screen.blit(char.img, char.loc)
 
-        while active:
-            for event in pg.event.get():
-                if event.type == pg.QUIT:
-                    active = False
-                elif event.type == pg.KEYDOWN:
-                    if event.key==pg.K_RIGHT:
-                        pass
+        # #     pg.display.flip()
 
-            screen.fill((150, 0, 0))
-            for char in Chars:
-                screen.blit(char.img,char.loc)
+        # #     clock.tick(30)
+        # # print(Chars)
+        # # pg.quit()
+        print("gui init")
 
-            pg.display.flip()
+    def refresh(self) -> None:
+        self.screen.fill((150, 0, 0))
+        for char in Chars:
+            self.screen.blit(char.img, char.loc)
 
-            clock.tick(30)
-        print(Chars)
-        pg.quit()
+        pg.display.flip()
+        print("refresh")
 
     @staticmethod
     def load_img(png: str, scale: tuple[int, int] = (64, 64)) -> pg.Surface:
@@ -48,3 +58,4 @@ class GUI:
 if __name__ == "__main__":
     char_init()
     GUI()
+
