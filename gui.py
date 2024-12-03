@@ -14,35 +14,11 @@ class GUI:
 
         for char in Chars:
             char.img = GUI.load_img(char.img_name)
-        #
-        # active = True
-        # clock = pg.time.Clock()
-        # ======================================
-        # LOOOP CARIIED TO loop.py
-        # ======================================
-        # # while active:
-        # #     for event in pg.event.get():
-        # #         if event.type == pg.QUIT:
-        # #             active = False
-        # #         elif event.type == pg.KEYDOWN:
-        # #             if event.key == pg.K_RIGHT:
-        # #                 pass
-
-        # #     self.screen.fill((150, 0, 0))
-        # #     for char in Chars:
-        # #         self.screen.blit(char.img, char.loc)
-
-        # #     pg.display.flip()
-
-        # #     clock.tick(30)
-        # # print(Chars)
-        # # pg.quit()
-        print("gui init")
 
     def refresh(self) -> None:
         self.screen.fill(self.background_color)
         for char in Chars:
-            self.screen.blit(char.img, char.img_loc)#char.loc
+            self.screen.blit(char.img, char.img_loc)  # char.loc
 
         pg.display.flip()
 
