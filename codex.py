@@ -9,4 +9,3 @@ class EQ:
 
     cape = _Armor(defense=5)
     helmet = _Armor(defense=10)
-

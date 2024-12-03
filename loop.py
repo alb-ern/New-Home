@@ -1,24 +1,27 @@
 import pygame as pg
 from character import Character
 from player import Player
-from gui import GUI
 Chars = Character.Chars
 
 
-player = Player(hp=30, loc=(2, 2), img="knight")
-enemy = Character()
-gui = GUI()
-active = True
-clock = pg.time.Clock()
-while active:  # Main Loop
-    for event in pg.event.get():
-        if event.type == pg.QUIT:
-            active = False
-        elif event.type == pg.KEYDOWN:
-            if event.key == pg.K_RIGHT:
-                pass
+player = Player(hp=30, loc=(1, 1), img="knight")
+enemy = Character(img="enemy")
 
-    gui.refresh()
 
-    clock.tick(30)
-pg.quit()
+class LOOP:
+	active=True
+	def __init__(self) -> None:
+	  # Main Loop
+		for event in pg.event.get():
+			if event.type == pg.QUIT:
+				LOOP.active = False
+			elif event.type == pg.KEYDOWN:
+				if event.key == pg.K_RIGHT:
+					player.loc[0]+=1
+				elif event.key == pg.K_LEFT:
+					player.loc[0]-=1
+				elif event.key == pg.K_DOWN:
+					player.loc[1]+=1
+				elif event.key == pg.K_UP:
+					player.loc[1]-=1
+

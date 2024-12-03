@@ -16,10 +16,16 @@ class Character():
         self.bag = set()
         self.hand_item = EQ.hand
         self.armor = EQ.cape
-        self.loc=[loc[0]*64,loc[1]*64]
+        self.loc=[loc[0],loc[1]]
         Character.Chars.add(self)
         print("promise")
         self.update()
+
+    @property
+    def img_loc(self)-> list[int]:
+        img_loc=[self.loc[0]*64,self.loc[1]*64]
+        return img_loc
+
 
     def take(self, item: "Item") -> None:
         self.bag.add(item)
