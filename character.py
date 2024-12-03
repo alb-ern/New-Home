@@ -17,7 +17,7 @@ class Character():
         self.bag = set()
         self.hand_item = EQ.hand
         self.armor = EQ.cape
-        self.loc = [loc[0], loc[1]]
+        self.loc = [loc[0], loc[1]] 
         Character.Chars.add(self)
         self.update()
 

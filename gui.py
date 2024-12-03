@@ -15,7 +15,7 @@ class GUI:
         for char in Chars:
             char.img = GUI.load_img(char.img_name)
 
-    def refresh(self) -> None:
+    def refresh_game(self) -> None:
         self.screen.fill(self.background_color)
         for char in Chars:
             self.screen.blit(char.img, char.img_loc)  # char.loc

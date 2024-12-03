@@ -9,13 +9,15 @@ enemy = Character(img="enemy")
 
 
 class LOOP:
-    active = True
+    game_active = True
+    is_game_running = True
 
     def __init__(self) -> None:
       # Main Loop
         for event in pg.event.get():
             if event.type == pg.QUIT:
-                LOOP.active = False
+                LOOP.game_active = False
+                LOOP.is_game_running = False
             elif event.type == pg.KEYDOWN:
                 if event.key == pg.K_RIGHT:
                     player.loc[0] += 1
