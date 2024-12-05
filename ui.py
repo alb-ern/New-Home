@@ -9,7 +9,7 @@ class UI:
         UI.rects = [UI.play_button_rect]
 
     @staticmethod
-    def render(screen, mouse_pos):
+    def render(screen, mouse_pos)->None:
         # click=False
         # for event in pg.event.get():
         #     if event.type == pg.MOUSEBUTTONDOWN and event.button == 1:
@@ -36,5 +36,5 @@ class UI:
         return tuple(buttons)
 
     @staticmethod
-    def display_info(res_info):
+    def display_info(res_info)->None:
         UI.center = (res_info.current_w//2, res_info.current_h//2)

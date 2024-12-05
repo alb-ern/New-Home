@@ -11,7 +11,7 @@ class MAIN:
     running = True
 
     @staticmethod
-    def main():
+    def main()-> None:
         while LOOP.is_game_running:
             clock.tick(30)
             while LOOP.screen_ui:
