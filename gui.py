@@ -1,5 +1,6 @@
 import pygame as pg
 from character import Character
+from ui import UI
 Chars = Character.Chars
 
 
@@ -8,6 +9,8 @@ class GUI:
         self.background_color = game_background_color
         pg.init()
         res_info = pg.display.Info()
+        UI.display_info(res_info)
+        UI()
         self.screen = pg.display.set_mode(
             (res_info.current_w, res_info.current_h-50))
         pg.display.set_caption("New Home the Game by pythonGodXx")
@@ -18,6 +21,7 @@ class GUI:
     def refresh_ui(self):
         self.screen.fill((100,100,100))
         #ui elements here
+        UI.render(self.screen)
         pg.display.flip()
 
     def refresh_game(self) -> None:
