@@ -21,7 +21,7 @@ class GUI:
     def refresh_ui(self):
         self.screen.fill((100,100,100))
         #ui elements here
-        UI.render(self.screen)
+        UI.render(self.screen,pg.mouse.get_pos())
         pg.display.flip()
 
     def refresh_game(self) -> None:

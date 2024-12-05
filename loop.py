@@ -27,6 +27,7 @@ class LOOP:
                 elif LOOP.screen_play:
                     self.game_action(event)
 
+
     def game_action(self, event) -> None:
         if event.key == pg.K_RIGHT:
             player.loc[0] += 1
