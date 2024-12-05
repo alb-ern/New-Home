@@ -8,28 +8,27 @@ player = Player(hp=30, loc=(1, 1), img="knight")
 enemy = Character(img="enemy")
 
 
-class LOOP:
+class INPUT:
     screen_play = False
     screen_ui = True
     is_game_running = True
 
     def __init__(self) -> None:
-        LOOP.click=False
+        INPUT.click = False
       # Main Loop
         for event in pg.event.get():
             if event.type == pg.QUIT:
-                LOOP.screen_play = False
-                LOOP.screen_ui = False
-                LOOP.is_game_running = False
+                INPUT.screen_play = False
+                INPUT.screen_ui = False
+                INPUT.is_game_running = False
             elif event.type == pg.KEYDOWN:
                 if event.key == pg.K_q:
-                    LOOP.screen_play = not LOOP.screen_play
-                    LOOP.screen_ui = not LOOP.screen_ui
-                elif LOOP.screen_play:
+                    INPUT.screen_play = not INPUT.screen_play
+                    INPUT.screen_ui = not INPUT.screen_ui
+                elif INPUT.screen_play:
                     self.game_action(event)
             elif event.type == pg.MOUSEBUTTONDOWN and event.button == 1:
-                LOOP.click=True
-
+                INPUT.click = True
 
     def game_action(self, event) -> None:
         if event.key == pg.K_RIGHT:

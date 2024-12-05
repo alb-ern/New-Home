@@ -1,5 +1,5 @@
 import pygame as pg
-from loop import LOOP
+from input_ import INPUT
 
 
 class UI:
@@ -8,20 +8,20 @@ class UI:
         UI.play_button_rect = UI.button_disabled.get_rect(
             topleft=(UI.center[0]-512, UI.center[1]-32))
         UI.rects = [UI.play_button_rect]
-        UI._click_sec=0
+        UI._click_sec = 0
 
     @staticmethod
     def render(screen, mouse_pos) -> None:
-        UI._click_sec-=1 if UI._click_sec>0 else 0
-        if LOOP.click:
-            UI._click_sec=8
+        UI._click_sec -= 1 if UI._click_sec > 0 else 0
+        if INPUT.click:
+            UI._click_sec = 8
         for button_rect in UI.rects:
             if button_rect.collidepoint(mouse_pos):
                 if UI._click_sec:
                     screen.blit(UI.button_mousedown, button_rect.topleft)
-                    if UI._click_sec==1:
-                        LOOP.screen_ui=False
-                        LOOP.screen_play=True
+                    if UI._click_sec == 1:
+                        INPUT.screen_ui = False
+                        INPUT.screen_play = True
                 else:
                     screen.blit(UI.button_mouseover, button_rect.topleft)
             else:
