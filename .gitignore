@@ -2,3 +2,4 @@
 __pycache__
 *.drawio
 ui_handler.py
+.vscode

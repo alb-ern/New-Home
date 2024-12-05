@@ -16,7 +16,7 @@ class UI:
     def render(screen: pg.Surface, mouse_pos: tuple[int, int], font: pg.font.Font) -> None:
         UI._click_sec -= 1 if UI._click_sec > 0 else 0
         if INPUT.click:
-            UI._click_sec = 8
+            UI._click_sec = 5
         for button_rect in UI.rects:
             if button_rect.collidepoint(mouse_pos):
                 if UI._click_sec:

@@ -8,7 +8,6 @@ clock = pg.time.Clock()
 
 class MAIN:
     running = True
-
     @staticmethod
     def main() -> None:
         while INPUT.is_game_running:
