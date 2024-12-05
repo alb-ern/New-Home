@@ -5,17 +5,22 @@ import pygame as pg
 gui = GUI()
 clock = pg.time.Clock()
 
+
 class MAIN:
-    running=True
+    running = True
+
     @staticmethod
     def main():
         while LOOP.is_game_running:
-            while LOOP.game_active:
+            while LOOP.screen_ui:
+                LOOP()
+                gui.refresh_ui()
+                clock.tick(30)
+            while LOOP.screen_play:
                 LOOP()
                 gui.refresh_game()
                 clock.tick(30)
             clock.tick(30)
-        pg.quit()
 
 
 if __name__ == "__main__":

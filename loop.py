@@ -9,21 +9,28 @@ enemy = Character(img="enemy")
 
 
 class LOOP:
-    game_active = True
+    screen_play = False
+    screen_ui = True
     is_game_running = True
 
     def __init__(self) -> None:
       # Main Loop
         for event in pg.event.get():
             if event.type == pg.QUIT:
-                LOOP.game_active = False
-                LOOP.is_game_running = False
+                pg.quit()
             elif event.type == pg.KEYDOWN:
-                if event.key == pg.K_RIGHT:
-                    player.loc[0] += 1
-                elif event.key == pg.K_LEFT:
-                    player.loc[0] -= 1
-                elif event.key == pg.K_DOWN:
-                    player.loc[1] += 1
-                elif event.key == pg.K_UP:
-                    player.loc[1] -= 1
+                if event.key == pg.K_q:
+                    LOOP.screen_play = not LOOP.screen_play
+                    LOOP.screen_ui = not LOOP.screen_ui
+                elif LOOP.screen_play:
+                    self.game_action(event)
+
+    def game_action(self, event) -> None:
+        if event.key == pg.K_RIGHT:
+            player.loc[0] += 1
+        elif event.key == pg.K_LEFT:
+            player.loc[0] -= 1
+        elif event.key == pg.K_DOWN:
+            player.loc[1] += 1
+        elif event.key == pg.K_UP:
+            player.loc[1] -= 1

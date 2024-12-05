@@ -4,8 +4,8 @@ Chars = Character.Chars
 
 
 class GUI:
-    def __init__(self, background_color=(160, 140, 110)) -> None:
-        self.background_color = background_color
+    def __init__(self, game_background_color=(160, 140, 110)) -> None:
+        self.background_color = game_background_color
         pg.init()
         res_info = pg.display.Info()
         self.screen = pg.display.set_mode(
@@ -14,6 +14,11 @@ class GUI:
 
         for char in Chars:
             char.img = GUI.load_img(char.img_name)
+
+    def refresh_ui(self):
+        self.screen.fill((100,100,100))
+        #ui elements here
+        pg.display.flip()
 
     def refresh_game(self) -> None:
         self.screen.fill(self.background_color)
