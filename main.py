@@ -12,6 +12,7 @@ class MAIN:
     @staticmethod
     def main():
         while LOOP.is_game_running:
+            clock.tick(30)
             while LOOP.screen_ui:
                 LOOP()
                 gui.refresh_ui()
@@ -20,7 +21,7 @@ class MAIN:
                 LOOP()
                 gui.refresh_game()
                 clock.tick(30)
-            clock.tick(30)
+        pg.quit()
 
 
 if __name__ == "__main__":

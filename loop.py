@@ -17,7 +17,9 @@ class LOOP:
       # Main Loop
         for event in pg.event.get():
             if event.type == pg.QUIT:
-                pg.quit()
+                LOOP.screen_play = False
+                LOOP.screen_ui = False
+                LOOP.is_game_running = False
             elif event.type == pg.KEYDOWN:
                 if event.key == pg.K_q:
                     LOOP.screen_play = not LOOP.screen_play
