@@ -14,6 +14,7 @@ class LOOP:
     is_game_running = True
 
     def __init__(self) -> None:
+        LOOP.click=False
       # Main Loop
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -26,6 +27,8 @@ class LOOP:
                     LOOP.screen_ui = not LOOP.screen_ui
                 elif LOOP.screen_play:
                     self.game_action(event)
+            elif event.type == pg.MOUSEBUTTONDOWN and event.button == 1:
+                LOOP.click=True
 
 
     def game_action(self, event) -> None:

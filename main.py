@@ -17,7 +17,7 @@ class MAIN:
             while LOOP.screen_ui:
                 LOOP()
                 gui.refresh_ui()
-                clock.tick(10)
+                clock.tick(30)
             while LOOP.screen_play:
                 LOOP()
                 gui.refresh_game()
