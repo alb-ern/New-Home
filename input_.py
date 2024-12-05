@@ -32,10 +32,10 @@ class INPUT:
 
     def game_action(self, event) -> None:
         if event.key == pg.K_RIGHT:
-            player.loc[0] += 1
+            player.loc[0] += 1 if player.loc[0] < 20 else 0
         elif event.key == pg.K_LEFT:
-            player.loc[0] -= 1
+            player.loc[0] -= 1 if player.loc[0] > 0 else 0
         elif event.key == pg.K_DOWN:
-            player.loc[1] += 1
+            player.loc[1] += 1 if player.loc[1] < 11 else 0
         elif event.key == pg.K_UP:
-            player.loc[1] -= 1
+            player.loc[1] -= 1 if player.loc[1] > 0 else 0

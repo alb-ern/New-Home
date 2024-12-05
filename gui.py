@@ -8,11 +8,12 @@ class GUI:
     def __init__(self, game_background_color:tuple[int,...]=(160, 140, 110)) -> None:
         self.background_color = game_background_color
         pg.init()
+        self.font = pg.font.Font(None, 36)
         res_info = pg.display.Info()
         UI.display_info(res_info)
         UI()
         self.screen = pg.display.set_mode(
-            (res_info.current_w, res_info.current_h-50))
+            (res_info.current_w, res_info.current_h))
         pg.display.set_caption("New Home the Game by pythonGodXx")
 
         for char in Chars:
@@ -21,7 +22,7 @@ class GUI:
     def refresh_ui(self) -> None:
         self.screen.fill((100, 100, 100))
         # ui elements here
-        UI.render(self.screen, pg.mouse.get_pos())
+        UI.render(self.screen, pg.mouse.get_pos(),self.font)
         pg.display.flip()
 
     def refresh_game(self) -> None:
