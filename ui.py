@@ -4,12 +4,12 @@ from input_ import INPUT
 
 
 class UI:
-    def __init__(self,font:pg.font.Font) -> None:
+    def __init__(self, font: pg.font.Font) -> None:
         UI.buttons = []
-        UI.font=font
+        UI.font = font
         UI.button_enabled, UI.button_disabled, UI.button_mouseover, UI.button_mousedown, UI.button_shadow = UI.load_button()
-        play_button = BUTTON(text="START")
-        exit_button = BUTTON(loc=(0,96),text="EXIT")
+        play_button = BUTTON(text="START",func=lambda:setattr(INPUT,"screen_ui",False),setattr(INPUT,"",True))
+        exit_button = BUTTON(loc=(0, 96), text="EXIT")
         # UI.play_button_rect = UI.button_disabled.get_rect(
         #     center=(UI.center[0], UI.center[1]))
         # UI.exit_button_rect = UI.button_disabled.get_rect(
@@ -25,7 +25,7 @@ class UI:
         for button in UI.buttons:
             if button.rect.collidepoint(mouse_pos):
                 if UI._click_sec:
-                    screen.blit(UI.button_mousedown, button_rect.topleft)
+                    button.state = "tap"
                     if UI._click_sec == 1:
                         if button_rect == UI.play_button_rect:
                             INPUT.screen_ui = False
@@ -37,9 +37,10 @@ class UI:
                 else:
                     screen.blit(UI.button_mouseover, button_rect.topleft)
             else:
-                screen.blit(UI.button_enabled, button_rect.topleft)
-            if button_rect == UI.play_button_rect:     screen.blit(play_button_text, play_button_text_loc)
-         
+                button.state = "enabled"
+            if button_rect == UI.play_button_rect:     screen.blit(
+                play_button_text, play_button_text_loc)
+
                 play_button_text = font.render("START", True, (255, 255, 245))
                 play_button_text_loc = play_button_text.get_rect(
                     center=button_rect.center)
@@ -67,8 +68,12 @@ class UI:
 
 
 class BUTTON:
-    def __init__(self, loc=(0, 0), initial_surface=UI.button_disabled, text: str) -> None:
+    def __init__(self,
+                loc=(0, 0),
+                text: str="no_button_text",
+                init_surface:pg.Surface=UI.button_disabled,
+                func:function=NotImplemented) -> None:
         UI.buttons.append(self)
-        self.surface = initial_surface
-        self.rect = self.surface.get_rect(center=np.add(UI.center, loc))
+        self.state="enabled"
+        self.rect = init_surface.get_rect(center=np.add(UI.center, loc))
         self.text = UI.font.render(text, True, (255, 255, 245))
