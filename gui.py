@@ -11,18 +11,17 @@ class GUI:
         self.font = pg.font.Font(None, 36)
         res_info = pg.display.Info()
         UI.display_info(res_info)
-        UI(self.font)
         self.screen = pg.display.set_mode(
             (res_info.current_w, res_info.current_h))
         pg.display.set_caption("New Home the Game by pythonGodXx")
-
+        UI(self.screen, self.font)
         for char in Chars:
             char.img = GUI.load_img(char.img_name)
 
     def refresh_ui(self) -> None:
         self.screen.fill((100, 100, 100))
         # ui elements here
-        UI.render(self.screen, pg.mouse.get_pos())
+        UI.render(pg.mouse.get_pos())
         pg.display.flip()
 
     def refresh_game(self) -> None:

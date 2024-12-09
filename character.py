@@ -7,7 +7,13 @@ from item import Item
 class Character():
     Chars = set()
 
-    def __init__(self, hp: float = 20, speed: float = 2, loc: tuple[int, int] = (0, 0), img: str = "error") -> None:
+    def __init__(self,
+                 name: str,
+                 hp: float = 20,
+                 speed: float = 2,
+                 loc: tuple[int, int] = (0, 0),
+                 img: str = "error") -> None:
+        self.name = name
         self.img_name = img
         self.max_hp = round(hp, 2)
         self.hp = self.max_hp
@@ -17,7 +23,7 @@ class Character():
         self.bag = set()
         self.hand_item = EQ.hand
         self.armor = EQ.cape
-        self.loc = [loc[0], loc[1]] 
+        self.loc = [loc[0], loc[1]]
         Character.Chars.add(self)
         self.update()
 
@@ -55,13 +61,13 @@ class Character():
             self.hp = 0
 
 
-if __name__ == "__main__":
-    test = Character()
-    test2 = Character()
-    print(test2.hp, test.hp)
-    test.attack(test2)
-    print(test2.hp, test.hp)
-    test.take(EQ.helmet)
-    test.wear(EQ.helmet)
-    test2.attack(test)
-    print(test2.hp, test.hp)
+# if __name__ == "__main__":
+#     test = Character()
+#     test2 = Character()
+#     print(test2.hp, test.hp)
+#     test.attack(test2)
+#     print(test2.hp, test.hp)
+#     test.take(EQ.helmet)
+#     test.wear(EQ.helmet)
+#     test2.attack(test)
+#     print(test2.hp, test.hp)

@@ -1,21 +1,34 @@
 import pygame as pg
+import numpy as np
 from character import Character
-from player import Player
 Chars = Character.Chars
 
 
-player = Player(hp=30, loc=(1, 1), img="knight")
-enemy = Character(img="enemy")
+
+enemy = Character(name="",img="enemy")
+
+
+class GAME:
+    pass
+
+
+
+
+game = GAME()
 
 
 class INPUT:
     screen_play = False
     screen_ui = True
     is_game_running = True
+    _inpc = np.array([0, 0, 0, 0])
+    buffer = 10
 
-    def __init__(self) -> None:
+    def __init__(self,player) -> None:
         INPUT.click = False
+        INPUT.press = pg.key.get_pressed()
       # Main Loop
+        self.player_input(player)
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 INPUT.screen_play = False
@@ -26,16 +39,24 @@ class INPUT:
                     INPUT.screen_play = not INPUT.screen_play
                     INPUT.screen_ui = not INPUT.screen_ui
                 elif INPUT.screen_play:
-                    self.game_action(event)
+                    # game.update(event)#Main update  w single sgtroke
+                    pass
             elif event.type == pg.MOUSEBUTTONDOWN and event.button == 1:
                 INPUT.click = True
 
-    def game_action(self, event) -> None:
-        if event.key == pg.K_RIGHT:
-            player.loc[0] += 1 if player.loc[0] < 20 else 0
-        elif event.key == pg.K_LEFT:
-            player.loc[0] -= 1 if player.loc[0] > 0 else 0
-        elif event.key == pg.K_DOWN:
-            player.loc[1] += 1 if player.loc[1] < 11 else 0
-        elif event.key == pg.K_UP:
+    def player_input(self,player):
+        INPUT._inpc = np.maximum(INPUT._inpc-1, 0)
+        if INPUT.press[pg.K_w]:
+            print(INPUT._inpc)
+        if INPUT.press[pg.K_UP] and INPUT._inpc[0] == 0:
             player.loc[1] -= 1 if player.loc[1] > 0 else 0
+            INPUT._inpc[0] += INPUT.buffer
+        if INPUT.press[pg.K_DOWN] and INPUT._inpc[1] == 0:
+            player.loc[1] += 1 if player.loc[1] < 11 else 0
+            INPUT._inpc[1] += INPUT.buffer
+        if INPUT.press[pg.K_RIGHT] and INPUT._inpc[2] == 0:
+            player.loc[0] += 1 if player.loc[0] < 20 else 0
+            INPUT._inpc[2] += INPUT.buffer
+        if INPUT.press[pg.K_LEFT] and INPUT._inpc[3] == 0:
+            player.loc[0] -= 1 if player.loc[0] > 0 else 0
+            INPUT._inpc[3] += INPUT.buffer
