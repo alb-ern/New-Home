@@ -6,20 +6,21 @@ import pygame as pg
 
 clock = pg.time.Clock()
 ###chars init here
-player = Player(name="",hp=30, loc=(1, 1), img="knight")
+player = Player(name="player",hp=30, loc=(1, 1), img="knight")
 ###
 gui = GUI()
+INPUT.uno()
 class MAIN:
     @staticmethod
     def main() -> None:
         while INPUT.is_game_running:
             clock.tick(30)
             while INPUT.screen_ui:
-                INPUT(player)
+                INPUT()
                 gui.refresh_ui()
                 clock.tick(30)
             while INPUT.screen_play:
-                INPUT(player)
+                INPUT()
                 gui.refresh_game()
                 clock.tick(30)
         pg.quit()

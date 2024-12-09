@@ -1,6 +1,7 @@
 import pygame as pg
 import numpy as np
 from character import Character
+from player import Player
 Chars = Character.Chars
 
 
@@ -12,23 +13,28 @@ class GAME:
     pass
 
 
-
-
 game = GAME()
 
 
 class INPUT:
+    @staticmethod
+    def uno():
+        for i in Chars:
+            if isinstance(i, Player):
+                global player
+                player = i
     screen_play = False
     screen_ui = True
     is_game_running = True
     _inpc = np.array([0, 0, 0, 0])
     buffer = 10
 
-    def __init__(self,player) -> None:
+    def __init__(self) -> None:
+        print(Chars,player)
         INPUT.click = False
         INPUT.press = pg.key.get_pressed()
       # Main Loop
-        self.player_input(player)
+        self.player_input()
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 INPUT.screen_play = False
@@ -44,7 +50,7 @@ class INPUT:
             elif event.type == pg.MOUSEBUTTONDOWN and event.button == 1:
                 INPUT.click = True
 
-    def player_input(self,player):
+    def player_input(self):
         INPUT._inpc = np.maximum(INPUT._inpc-1, 0)
         if INPUT.press[pg.K_w]:
             print(INPUT._inpc)
