@@ -8,7 +8,7 @@ import pygame as pg
 
 clock = pg.time.Clock()
 ###chars init here
-player = Player(name="player", hp=30, loc=(1, 1), img="knight")
+player = Player(name="player", hp=30, loc=(10, 5), img="knight")
 enemy = Character(name="", img="enemy")
 ###
 game = Game()

@@ -11,7 +11,9 @@ class Game:
             if i.name == "player":
                 self.player = i
                 break
-        self.arr = np.zeros((100, 100))
+        self.arr = np.zeros(shape=(100, 100),dtype="<U6")#str longer than 6 is cut from 6th element
+        
+
 
 
 
