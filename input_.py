@@ -10,7 +10,7 @@ Chars = Character.Chars
 
 class INPUT:
     @staticmethod
-    def uno():
+    def init() -> None:
         for i in Chars:
             if isinstance(i, Player):
                 global player
@@ -19,7 +19,7 @@ class INPUT:
     screen_ui = True
     is_game_running = True
     _inpc = np.array([0, 0, 0, 0])
-    buffer = 8
+    buffer = 6
 
     def __init__(self) -> None:
         print(Chars,player)
@@ -42,7 +42,7 @@ class INPUT:
             elif event.type == pg.MOUSEBUTTONDOWN and event.button == 1:
                 INPUT.click = True
 
-    def player_input(self):
+    def player_input(self) -> None:
         INPUT._inpc = np.maximum(INPUT._inpc-1, 0)
         if INPUT.press[pg.K_w]:
             print(INPUT._inpc)

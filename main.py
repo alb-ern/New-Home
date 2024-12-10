@@ -2,18 +2,21 @@ from input_ import INPUT
 from gui import GUI
 from character import Character
 from player import Player
+from game import Game
 import pygame as pg
 
 
 clock = pg.time.Clock()
 ###chars init here
-player = Player(name="player",hp=30, loc=(1, 1), img="knight")
-enemy=Character(name="",img="enemy")
+player = Player(name="player", hp=30, loc=(1, 1), img="knight")
+enemy = Character(name="", img="enemy")
 ###
+game = Game()
 gui = GUI()
-INPUT.uno()
+INPUT.init()
 
-class MAIN:
+
+class Main:
     @staticmethod
     def main() -> None:
         while INPUT.is_game_running:
@@ -29,10 +32,8 @@ class MAIN:
         pg.quit()
 
 
-
 def main():
-    MAIN.main()
-
+    Main.main()
 
 
 if __name__ == "__main__":

@@ -4,15 +4,17 @@ from armor import _Armor
 from item import Item
 
 
-class Character():
-    Chars = set()
+class Character:
+    Chars:set["Character"] = set()
 
-    def __init__(self,
-                 name: str,
-                 hp: float = 20,
-                 speed: float = 2,
-                 loc: tuple[int, int] = (0, 0),
-                 img: str = "error") -> None:
+    def __init__(
+        self,
+        name: str,
+        hp: float = 20,
+        speed: float = 2,
+        loc: tuple[int, int] = (0, 0),
+        img: str = "error",
+    ) -> None:
         self.name = name
         self.img_name = img
         self.max_hp = round(hp, 2)
@@ -29,7 +31,7 @@ class Character():
 
     @property
     def img_loc(self) -> list[int]:
-        img_loc = [self.loc[0]*64, self.loc[1]*64]
+        img_loc = [self.loc[0] * 64, self.loc[1] * 64]
         return img_loc
 
     def take(self, item: "Item") -> None:
@@ -44,9 +46,10 @@ class Character():
 
     def attack(self, target: "Character") -> None:
         if target.alive:
-            target.hp = round(target.hp-self.hand_item.damage *
-                              (1-target.armor.defense), 2)
-            self.hp = round(self.hp-target.hand_item.counter_damage, 2)
+            target.hp = round(
+                target.hp - self.hand_item.damage * (1 - target.armor.defense), 2
+            )
+            self.hp = round(self.hp - target.hand_item.counter_damage, 2)
             if target.hp <= 0:
                 target.alive = False
             self.update()
@@ -60,14 +63,3 @@ class Character():
             self.take = None  # type: ignore
             self.hp = 0
 
-
-# if __name__ == "__main__":
-#     test = Character()
-#     test2 = Character()
-#     print(test2.hp, test.hp)
-#     test.attack(test2)
-#     print(test2.hp, test.hp)
-#     test.take(EQ.helmet)
-#     test.wear(EQ.helmet)
-#     test2.attack(test)
-#     print(test2.hp, test.hp)

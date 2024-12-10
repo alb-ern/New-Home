@@ -4,3 +4,4 @@ __pycache__
 ui_handler.py
 .vscode
 test.py
+.idea
