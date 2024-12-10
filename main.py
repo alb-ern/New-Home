@@ -1,5 +1,6 @@
 from input_ import INPUT
 from gui import GUI
+from character import Character
 from player import Player
 import pygame as pg
 
@@ -7,9 +8,11 @@ import pygame as pg
 clock = pg.time.Clock()
 ###chars init here
 player = Player(name="player",hp=30, loc=(1, 1), img="knight")
+enemy=Character(name="",img="enemy")
 ###
 gui = GUI()
 INPUT.uno()
+
 class MAIN:
     @staticmethod
     def main() -> None:

@@ -6,14 +6,6 @@ Chars = Character.Chars
 
 
 
-enemy = Character(name="",img="enemy")
-
-
-class GAME:
-    pass
-
-
-game = GAME()
 
 
 class INPUT:
@@ -27,7 +19,7 @@ class INPUT:
     screen_ui = True
     is_game_running = True
     _inpc = np.array([0, 0, 0, 0])
-    buffer = 10
+    buffer = 8
 
     def __init__(self) -> None:
         print(Chars,player)
