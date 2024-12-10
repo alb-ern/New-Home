@@ -22,7 +22,6 @@ class INPUT:
     buffer = 6
 
     def __init__(self) -> None:
-        print(Chars,player)
         INPUT.click = False
         INPUT.press = pg.key.get_pressed()
       # Main Loop
@@ -45,7 +44,7 @@ class INPUT:
     def player_input(self) -> None:
         INPUT._inpc = np.maximum(INPUT._inpc-1, 0)
         if INPUT.press[pg.K_w]:
-            print(INPUT._inpc)
+            pass
         if INPUT.press[pg.K_UP] and INPUT._inpc[0] == 0:
             player.loc[1] -= 1 if player.loc[1] > 0 else 0
             INPUT._inpc[0] += INPUT.buffer

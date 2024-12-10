@@ -20,7 +20,7 @@ class GUI:
         pg.display.set_caption("New Home the Game by pythonGodXx")
         UI(self.screen, self.font)
         for char in Chars:
-            char.img = self.load_img(char.img_name)
+            setattr(char,"_img",self.load_img(char.img_name))
         self.right_bar = pg.Surface((64 * 3, self.res_info.current_h))
         self.bottom_bar = pg.Surface((self.res_info.current_w, 96))
 
@@ -40,7 +40,7 @@ class GUI:
         self.screen.fill(self.background_color)
         self._ref_game_ui()
         for char in Chars:
-            self.screen.blit(char.img, char.img_loc)  # char.loc
+            self.screen.blit(char._img, char.img_loc)  # type: ignore # char.loc
 
         pg.display.flip()
 
