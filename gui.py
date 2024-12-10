@@ -1,6 +1,7 @@
 import pygame as pg
 from character import Character
 from ui import UI
+from game import Game
 
 Chars = Character.Chars
 
