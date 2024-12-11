@@ -1,4 +1,5 @@
 import pygame as pg
+import numpy as np
 from character import Character
 from ui import UI
 
@@ -9,10 +10,10 @@ Chars = Character.Chars
 class GUI:
     def __init__(
         self,
-        game=None,
+        game,
         game_background_color: tuple[int, ...] = (160, 140, 110)
     ) -> None:
-        self.game=game
+        self.game = game
         self.background_color = game_background_color
         pg.init()
         self.font = pg.font.Font(None, 36)
@@ -37,18 +38,18 @@ class GUI:
 
     def _find_player(self):
         for char in Chars:
-            if char.name=="player":
-                self.player=char
+            if char.name == "player":
+                self.player = char
                 break
 
-    def refresh_ui(self) -> None:#refreshes ui in constant frame loop
+    def refresh_ui(self) -> None:  # refreshes ui in constant frame loop
         self.screen.fill((100, 100, 100))
-        ### ui elements here
+        # ui elements here
         UI.render(pg.mouse.get_pos())
         ###
         pg.display.flip()
 
-    def _ref_game_ui(self) -> None:#refreshes game_ui bars in constant frame loop
+    def _ref_game_ui(self) -> None:  # refreshes game_ui bars in constant frame loop
         self.right_bar.fill((50, 20, 0))
         self.screen.blit(self.right_bar, (self.res_info.current_w - 3 * 64, 0))
         self.bottom_bar.fill((50, 20, 0))
@@ -57,17 +58,21 @@ class GUI:
     def refresh_game(self) -> None:
         self.screen.fill(self.background_color)
         self._ref_game_ui()
+
         for char in Chars:
             # type: ignore # char.loc
-            self.screen.blit(getattr(char,"_img"), char.img_loc)
+            np.where(self.game.arr == char.name)
+            self.screen.blit(getattr(char, "_img"), char.img_loc)
 
         pg.display.flip()
 
-    def load_img(self, png: str, scale: tuple[int, int] = (64, 64)) -> pg.Surface:#will look for png assets
+    # will look for png assets
+    def load_img(self, png: str, scale: tuple[int, int] = (64, 64)) -> pg.Surface:
         raw_img = pg.image.load("assets/" + png + ".png")
         img_out = pg.transform.smoothscale(raw_img, scale)
         return img_out
 
 
 if __name__ == "__main__":
-    GUI()
+    pass
+    # GUI()

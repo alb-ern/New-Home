@@ -15,10 +15,11 @@ class Game:
 
     def arr_update(self) -> None:
         for char in self.Chars:
-            self.arr[char.loc[0]][char.loc[1]] = char.name
+            delloc=np.where(self.arr==char.name)
+            self.arr[delloc]=""
+            self.arr[char.loc] = char.name
 
 
 if __name__ == "__main__":
     self = Game()
     print(self.arr)
-    
