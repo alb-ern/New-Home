@@ -1,15 +1,17 @@
 import pygame as pg
 from character import Character
 from ui import UI
-from game import Game
 
 Chars = Character.Chars
 
 
 class GUI:
     def __init__(
-        self, game_background_color: tuple[int, ...] = (160, 140, 110)
+        self,
+        game=None,
+        game_background_color: tuple[int, ...] = (160, 140, 110)
     ) -> None:
+        self.game=game
         self.background_color = game_background_color
         pg.init()
         self.font = pg.font.Font(None, 36)
@@ -21,7 +23,7 @@ class GUI:
         pg.display.set_caption("New Home the Game by pythonGodXx")
         UI(self.screen, self.font)
         for char in Chars:
-            setattr(char,"_img",self.load_img(char.img_name))
+            setattr(char, "_img", self.load_img(char.img_name))
         self.right_bar = pg.Surface((64 * 3, self.res_info.current_h))
         self.bottom_bar = pg.Surface((self.res_info.current_w, 96))
 
@@ -37,11 +39,14 @@ class GUI:
         self.bottom_bar.fill((50, 20, 0))
         self.screen.blit(self.bottom_bar, (0, self.res_info.current_h - 96))
 
+    def slicer(self):
+        pass
     def refresh_game(self) -> None:
         self.screen.fill(self.background_color)
         self._ref_game_ui()
         for char in Chars:
-            self.screen.blit(char._img, char.img_loc)  # type: ignore # char.loc
+            # type: ignore # char.loc
+            self.screen.blit(getattr(char,"_img"), char.img_loc)
 
         pg.display.flip()
 
