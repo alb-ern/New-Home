@@ -61,7 +61,7 @@ class GUI:
 
         for char in Chars:
             # type: ignore # char.loc
-            np.where(self.game.arr == char.name)
+            np.where(self.game.arr == char.name)###TODO:do this
             self.screen.blit(getattr(char, "_img"), char.img_loc)
 
         pg.display.flip()
