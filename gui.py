@@ -59,9 +59,11 @@ class GUI:
         self.screen.fill(self.background_color)
         self._ref_game_ui()
 
+        np.where(self.game.arr == self.player.name)
+        
         for char in Chars:
             # type: ignore # char.loc
-            np.where(self.game.arr == char.name)###TODO:do this
+            np.where(self.game.arr == char.name)  # TODO:do this
             self.screen.blit(getattr(char, "_img"), char.img_loc)
 
         pg.display.flip()
