@@ -40,6 +40,7 @@ class GUI:
         for char in Chars:
             if char.name == "player":
                 self.player = char
+                self._ploc = np.where(self.game.arr == char.name)
                 break
 
     def refresh_ui(self) -> None:  # refreshes ui in constant frame loop
@@ -58,13 +59,23 @@ class GUI:
     def refresh_game(self) -> None:
         self.screen.fill(self.background_color)
         self._ref_game_ui()
-
-        np.where(self.game.arr == self.player.name)
         
         for char in Chars:
             # type: ignore # char.loc
-            np.where(self.game.arr == char.name)  # TODO:do this
-            self.screen.blit(getattr(char, "_img"), char.img_loc)
+            if char is self.player:
+                self.screen.blit(getattr(char, "_img"), char.img_loc)
+                self._ploc = np.where(self.game.arr == char.name)
+
+        _blitta = self.game.arr[self._ploc[0][0]-5:self._ploc[0]
+                                [0]+6, self._ploc[1][1]-10:self._ploc[1][1]+11]
+        for char in Chars:
+            # type: ignore # char.loc
+            if char is not self.player:
+                if char.name in _blitta:
+                    self.screen.blit(getattr(char, "_img"), _blitta*64)
+                    #char_loc_arr = np.where(self.game.arr == char.name)  # TODO:do this
+
+            
 
         pg.display.flip()
 
